@@ -1,0 +1,150 @@
+<% include _header %>
+
+<script>
+
+    const token = sessionStorage.getItem("token");
+    let decode = jwt_decode(token)
+
+    fetch("api/users", { //es una promesa
+        headers: {
+            "Content-type": "application/json",
+            "Authorization": "Bearer " + token
+        }
+    }).then(response => {
+        if (response.ok) {
+            if (decode.isAdmin) {
+                response.json().then(json =>
+                    json.map(user => {
+
+                        const miniPerfilesElement = document.getElementById("miniPerfiles");
+
+                        const card = document.createElement("div");
+                        card.className = "card d-inline-block todo";
+                        card.setAttribute("style", "margin: 25px");
+                        miniPerfilesElement.appendChild(card);
+
+                        const cardDiv1 = document.createElement("div");
+                        cardDiv1.className = "centrado text-center";
+                        card.appendChild(cardDiv1);
+
+                        const cardImage = document.createElement("img");
+                        cardImage.className = "card-img-top";
+                        cardImage.src = "/images/kimono3.png" // TODO
+                        cardDiv1.appendChild(cardImage);
+
+                        const cardDiv2 = document.createElement("div");
+                        cardDiv2.className = "card-body inline-block";
+                        card.appendChild(cardDiv2);
+
+                        const cardDiv3 = document.createElement("div");
+                        cardDiv3.className = "centrado text-center";
+                        card.appendChild(cardDiv3);
+
+                        const p1 = document.createElement("p");
+                        p1.innerText = "Nombre: " + user.first_name;
+                        cardDiv2.appendChild(p1);
+                        const p2 = document.createElement("p");
+                        p2.innerText = "Apellidos: " + user.last_name;
+                        cardDiv2.appendChild(p2);
+                        const p3 = document.createElement("p");
+                        p3.innerText = "Fecha Nacimiento: " + user.birth_date;
+                        cardDiv2.appendChild(p3);
+                        const p4 = document.createElement("p");
+                        p4.innerText = "Nacionalidad: " + user.nationality;
+                        cardDiv2.appendChild(p4);
+                        const p5 = document.createElement("p");
+                        p5.innerText = "Peso: " + user.weight;
+                        cardDiv2.appendChild(p5);
+                        const p6 = document.createElement("p");
+                        p6.innerText = "Cinturon: " + user.belt;
+                        cardDiv2.appendChild(p6);
+                        const p7 = document.createElement("p");
+                        p7.innerText = "Email: " + user.email;
+                        cardDiv2.appendChild(p7);
+
+                        const btn1 = document.createElement("button");
+                        btn1.className = "btn btnSucces2";
+                        btn1.innerText = "Perfil";
+                        btn1.onclick = () => {
+                            location.href = "/editUser/" + user._id;
+                        };
+                        cardDiv3.appendChild(btn1);
+
+
+                    })
+                )
+            }
+            else {
+                response.json().then(json =>
+                    json.map(user => {
+                        const miniPerfilesElement = document.getElementById("miniPerfiles");
+
+                        const card = document.createElement("div");
+                        card.className = "card d-inline-block todo";
+                        card.setAttribute("style", "margin: 25px");
+                        miniPerfilesElement.appendChild(card);
+
+                        const cardDiv1 = document.createElement("div");
+                        cardDiv1.className = "centrado text-center";
+                        card.appendChild(cardDiv1);
+
+                        const cardImage = document.createElement("img");
+                        cardImage.className = "card-img-top";
+                        cardImage.src = "/images/kimono3.png" // TODO
+                        cardDiv1.appendChild(cardImage);
+
+                        const cardDiv2 = document.createElement("div");
+                        cardDiv2.className = "card-body inline-block";
+                        card.appendChild(cardDiv2);
+
+                        const cardDiv3 = document.createElement("div");
+                        cardDiv3.className = "centrado text-center";
+                        card.appendChild(cardDiv3);
+
+                        const p1 = document.createElement("p");
+                        p1.innerText = "Nombre: " + user.first_name;
+                        cardDiv2.appendChild(p1);
+                        const p2 = document.createElement("p");
+                        p2.innerText = "Apellidos: " + user.last_name;
+                        cardDiv2.appendChild(p2);
+                        const p3 = document.createElement("p");
+                        p3.innerText = "Fecha Nacimiento: " + user.birth_date;
+                        cardDiv2.appendChild(p3);
+                        const p4 = document.createElement("p");
+                        p4.innerText = "Nacionalidad: " + user.nationality;
+                        cardDiv2.appendChild(p4);
+                        const p5 = document.createElement("p");
+                        p5.innerText = "Peso: " + user.weight;
+                        cardDiv2.appendChild(p5);
+                        const p6 = document.createElement("p");
+                        p6.innerText = "Cinturon: " + user.belt;
+                        cardDiv2.appendChild(p6);
+                        const p7 = document.createElement("p");
+                        p7.innerText = "Email: " + user.email;
+                        cardDiv2.appendChild(p7);
+
+                        if (decode.id == user._id) {
+                            const btn1 = document.createElement("button");
+                            btn1.className = "btn btnSucces2";
+                            btn1.innerText = "Perfil";
+                            btn1.onclick = () => {
+                                location.href = "/editUser/" + user._id;
+                            };
+                            cardDiv3.appendChild(btn1);
+                        }
+
+                    })
+                )
+
+
+
+
+
+            }
+        }
+    });
+</script>
+
+<div class="container etiquetas ce" id="miniPerfiles"></div>
+
+<% include _footer %>

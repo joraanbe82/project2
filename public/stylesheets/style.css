@@ -1,0 +1,389 @@
+/*--------------Plantilla login--------------*/ /*(https://cdn.wallpapersafari.com/43/43/sSMvbP.jpg);*/
+.login {
+  /* background-image: url(https://cdn.wallpapersafari.com/43/43/sSMvbP.jpg); http://inn.spb.ru/images/000/DSC100090709.jpg */
+  background-image: url(/images/login.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: 'Fira Sans', sans-serif;
+  color: whitesmoke;
+  
+  
+}
+
+
+
+
+/* .login {
+  animation: scale 60s linear infinite;
+}
+
+@keyframes scale {
+  80% {
+    -webkit-transform:scale(1.2);
+    -moz-transform:scale(1.2);
+    -ms-transform:scale(1.2);
+    -o-transform:scale(1.2);
+    transform:scale(0.2);
+  }
+} */
+
+
+.company {
+  color: rgb(226, 154, 77) !important;
+  font-size: 4rem;
+}
+
+#btnLog {
+  display: table-cell;
+  color: rgb(226, 154, 77);
+  border-color: rgb(226, 154, 77));
+}
+
+
+#btnLog:hover, .btnLog:hover {
+  background-color: rgb(226, 154, 77);
+  color: whitesmoke;
+}
+
+.modal-footer {
+  display: flex;
+}
+
+.registro, .btnLog {
+  color: rgb(71, 0, 0)
+}
+
+/* Body de la pestaña de registrarse*/
+.fa-envelope,
+.fa-lock {
+  color: rgb(1, 13, 52);
+}
+
+.text-left {
+  margin-top: 10px;
+}
+
+
+
+
+
+/* Boton del responsive cuando minimiza */
+#navbarSupportedContent {
+  justify-content: center;
+}
+
+/*-------Plantilla header -------------*/
+
+.parallax {
+  /*imagen que quiera usar*/
+  background-image: url(/images/fondo\ prueba.jpg);
+  /*le doy un tamaño minimo*/
+  min-height: 500px;
+  /*el scrool para el efecto parallax*/
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+/* nav-bar */
+.logo {
+  height: 80px;
+  width: 80px;
+}
+.link {
+  color: whitesmoke !important;
+  font-size: 1.5em !important;
+  padding-left: 60px;
+}
+
+.linkBrand{
+  color: rgb(226, 154, 77) !important;
+  font-size: 1.5em !important;
+  padding-left: 60px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  padding-left: 160px;
+}
+/* .navLeft, */
+.navbar-brand {
+  color: whitesmoke;
+}
+
+
+
+.navbar {
+  font-size: 22px;
+  color: white;
+}
+
+.dropdown-menu {
+  z-index: 100;
+}
+.loginName {
+  padding-left: 20px;
+}
+
+.navbar-toggler {
+  border-color: white;
+  background-color: rgb(226, 154, 77);
+}
+/* .navbar-light,
+.navbar-toggler {
+   border-color: white;
+} */
+
+.btnDisconect {
+  margin-right: 16px;
+  color: white;
+  border-color: rgb(226, 154, 77);
+}
+
+.btnDisconect:hover {
+  background-color: rgb(226, 154, 77);
+  color: whitesmoke;
+}
+
+#navbarSupportedContent {
+  justify-content: center;
+}
+
+.individual {
+  height: 700px;
+  width: 600px;
+  margin: auto;
+}
+
+.fa-arrow-alt-circle-left,
+.fa-arrow-alt-circle-right {
+  color: black;
+}
+
+/*pagina index*/
+
+.notisIndex,
+.noticas {
+  display: flex;
+  color: white;
+}
+
+.notisIndex {
+  margin-top: 100px;
+}
+
+.etiquetas {
+  display: flex;
+}
+
+/*pestaña perfil plantilla newDatos*/
+
+.perfilUsuario {
+  height: 400px;
+  margin-top: 200px;
+  margin-bottom: 100px;
+  color: rgb(226, 154, 77);
+}
+h1,
+h5,
+.value {
+  color: rgb(226, 154, 77);
+}
+
+.btnDanger {
+  color: #dc3545;
+  background-color: none !important;
+  border-color: #dc3545;
+}
+
+.btnDanger:hover {
+  color: white;
+  background-color: #dc3545;
+}
+
+.btnSucces {
+  color: #12680a;
+  background-color: none !important;
+  border-color: #12680a;
+}
+
+.btnSucces:hover {
+  background-color: #12680a;
+  color: white;
+}
+
+
+.btnSucces2 {
+  color: white;
+  background-color: none !important;
+  border-color: #f05a28;
+}
+
+.btnSucces2:hover {
+  background-color: #f05a28;
+  color: white;
+}
+.upload {
+  padding: 1px;
+  margin: 0px;
+  margin-top: 15px;
+}
+
+.todo {
+  margin: 25px !important;
+  background: none;
+  color: white;
+}
+
+.perfil {
+  height: 400px;
+}
+
+.card-img-top {
+  width: 235px;
+  height: 235px;
+}
+.usuario {
+  padding-left: 0;
+}
+.guardar {
+  margin: 30px;
+}
+
+.perfilDatos {
+  padding-left: inherit;
+}
+
+.spanList {
+  display: grid;
+  align-items: center;
+  padding-left: 65px;
+  font-family: cursive;
+}
+
+/*actualizando perfil*/
+
+.form-group {
+  display: flex;
+}
+
+.col-7 {
+  padding: 18px;
+}
+
+.form-group input {
+  margin: 7px;
+}
+
+.botones {
+  text-align: center;
+}
+
+.ce {
+  width: 300px;
+  height: 300px;
+  display: contents; 
+  padding: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+/*----  Estrellas de progreso ------- */
+
+.fullStars{
+  display: flex;
+}
+
+.stars {
+  margin-bottom: 105px;
+}
+
+.star-rating {
+  font-size: 0;
+  white-space: nowrap;
+  display: inline-block;
+  width: 250px;
+  height: 50px;
+  overflow: hidden;
+  position: relative;
+  background: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREREREREIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=");
+  background-size: contain;
+}
+.star-rating i {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 20%;
+  z-index: 1;
+  background: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjRkZERjg4IiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=");
+  background-size: contain;
+}
+.star-rating input {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  opacity: 0;
+  display: inline-block;
+  width: 20%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 2;
+  position: relative;
+}
+.star-rating input:hover + i,
+.star-rating input:checked + i {
+  opacity: 1;
+}
+.star-rating i ~ i {
+  width: 40%;
+}
+.star-rating i ~ i ~ i {
+  width: 60%;
+}
+.star-rating i ~ i ~ i ~ i {
+  width: 80%;
+}
+.star-rating i ~ i ~ i ~ i ~ i {
+  width: 100%;
+}
+/* .choice1 {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 20px;
+  display: block;
+} */
+
+::after,
+::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-align: center;
+  vertical-align: middle;
+}
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+body::before {
+  height: 100%;
+  content: "";
+  width: 0;
+  background: red;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+
+.footer {
+  text-align: center !important;
+  height: 200px;
+}

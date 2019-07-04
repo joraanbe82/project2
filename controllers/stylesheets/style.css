@@ -1,0 +1,182 @@
+/*--------------Plantilla login--------------*/
+.login{
+  background-image: url(../images/gym1.jpg);
+  background-position: center;	  
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: 'Yeon Sung', cursive;
+}
+
+#btnLog {
+  display: table-cell;
+  color: black;
+  border-color: black;
+}
+
+/* Body de la pestaña de registrarse*/
+.fa-envelope, .fa-lock {
+  color:rgb(1, 13, 52);
+}
+
+.text-left{
+  margin-top: 10px;
+}
+/* Boton del responsive cuando minimiza */
+#navbarSupportedContent{
+  justify-content: center;
+} 
+
+/*-------Plantilla header -------------*/
+
+.parallax {
+  /*imagen que quiera usar*/
+  background-image: url(../images/tio\ de\ pie.png);
+  /*le doy un tamaño minimo*/
+  min-height: 500px;
+  /*el scrool para el efecto parallax*/
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Yeon Sung', cursive;
+}
+
+/* nav-bar */
+.logo{
+  height: 80px;
+  width: 80px;
+}
+
+.navLeft, .navbar-brand{
+  padding-left: 15px;
+}
+
+.navbar{
+  background-color: rgb(144, 148, 172);
+  font-size: 22px;
+  color: white;  
+}
+
+.dropdown-menu{
+  z-index: 100;
+}
+.loginName{
+  padding-left: 20px;
+}
+
+
+#btnDisconect{
+  margin-right: 16px;
+  color: black;
+  border-color: black;
+}
+
+
+
+#navbarSupportedContent{
+  justify-content: center;
+} 
+
+.individual {
+  height: 700px;
+  width: 600px;
+  margin: auto;
+}
+
+.fa-arrow-alt-circle-left,
+.fa-arrow-alt-circle-right{
+  color: black;
+}
+
+/*pagina index*/
+
+.notisIndex, .noticas {
+  display: flex;
+  color: white;
+}
+
+.notisIndex{
+  margin-top: 100px;
+}
+
+/*pestaña perfil plantilla newDatos*/
+
+.perfilUsuario {
+  border: 1px solid black;
+  height: 400px;
+  margin-top: 200px;
+  background-color: lavender;
+  /* font-family: 'Yeon Sung', cursive; */
+}
+
+.upload {
+  padding: 1px;
+  margin: 0px;
+  margin-top: 15px;
+};
+
+
+.todo{
+  background-color: lavender;
+}
+.perfil{
+  height: 400px;
+}
+
+.card-img-top {
+  width: 235px;
+  height: 235px;
+  
+}
+.usuario{
+  padding-left: 0;
+}
+.guardar{
+  margin:30px;
+}
+
+.perfilDatos{
+  padding-left: inherit;
+}
+
+.spanList{
+  display: grid;
+  align-items: center;
+  padding-left: 65px;
+  font-family: cursive;
+}
+
+/*actualizando perfil*/
+
+.form-group{
+  display: flex;
+
+}
+
+.col-7{
+  padding: 18px;
+}
+
+.form-group input{
+  margin: 7px;
+}
+
+.botones{
+  text-align: center;
+}
+
+/* a{
+  margin: 15px;
+} */
+
+.ce{
+  width: 300px;
+  height:  300px;
+  display: inline-block;
+  padding: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  
+}
+

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="Raul Andrade">
+    <meta name="keywords" content="Taekwon-Do, gym, gestion alumnos, TKDPRO">
+    <meta name="description" content="Web app para uso interno de gestion de alumnos en escuelas de artes marciales">
+    <title>GYM MASTER</title>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Yeon+Sung&display=swap&subset=korean" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+    <script src="/javascripts/lib/jquery-3.4.1.min.js"></script>
+    <script src="/javascripts/eventos.js"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
+
+    <script src="/javascripts/jwt-decode.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"
+        integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ"
+        crossorigin="anonymous"></script>   
+       <!--fonts-->
+       <link href="https://fonts.googleapis.com/css?family=Fira+Sans&display=swap" rel="stylesheet">
+        
+
+</head>
+
+
+<script>
+
+    function logOut() {
+        sessionStorage.removeItem('token');
+        location.href = "/login";
+    }
+
+
+</script>
+
+<body class="parallax">
+
+    <nav class="navbar navbar-expand-lg navbar-light" id="navbarCompleta">
+        <a href="/users"><img class="logo" src="" alt=""></a>
+        <!--Coloco la imagen lo  primero para que aparezca a la izquierda-->
+
+        <a class="navbar-brand linkBrand" href="/users">GYM MASTER</a>
+
+        <!--Esto hace que al reducir el tamaño de la web aparezca un boton desplegable-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!--id no se tocan que hacen relacion al button superior para minimizar-->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <!--Con el active hago que al reducir tamaño se pueda usar el boton del menu desplegable-->
+                    <a class="nav-link link" href="/users">Perfiles <span class="sr-only">(current)</span></a>
+                </li>
+
+                <!--Enlazar con la plantilla de registro de nuevos alumnos-->
+                <li class="nav-item">
+                    <a class="nav-link link" href="/newUser">Añadir nuevo alumno</a>
+                </li>
+
+                <!-- <li class="nav-item dropdown" disabled>
+                    <a class="nav-link dropdown-toggle link" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ORDENAR POR</a>
+
+        
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item link" href="./orderByName">NOMBRE</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item link" href="./orderByBelt">CINTURON</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item link" href="./orderByAge">EDAD</a>
+                    </div>
+                </li> -->
+
+            </ul>
+            <!--Aqui se encuentra el search-->
+            <form class="form-inline my-2 my-lg-0">
+                <!-- <input class="form-control mr-sm-2 mb-2" type="search" placeholder="Search" aria-label="Search"
+                    maxlength="10"> -->
+                <input type="button" class="btn my-2 my-sm-0 mt-2 btnDisconect" id="btnDisconect"
+                    value="Desconectar" onclick="logOut()">
+            </form>
+        </div>
+    </nav>

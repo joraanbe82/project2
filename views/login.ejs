@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="Raul Andrade">
+    <meta name="keywords" content="Taekwon-Do, gym, gestion alumnos, TKDPRO">
+    <meta name="description" content="Web app para uso interno de gestion de alumnos en escuelas de artes marciales">
+
+
+    <title>GYM MASTER</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./stylesheets/style.css" type="text/css">
+
+
+    <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"
+        integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ"
+        crossorigin="anonymous"></script>
+    <script src="/javascripts/jwt-decode.min.js"></script>
+
+    <!--fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans&display=swap" rel="stylesheet">
+
+    <script>
+        function getToken() {
+            const emailValue = document.getElementById("modalLRInput10").value; // correo line 114
+            const passwordValue = document.getElementById("modalLRInput11").value; // pass line 125
+            fetch("api/auth", { // fetch es una promesa
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ m: emailValue, p: passwordValue })
+            }).then(response => {
+                if (response.ok) {
+                    response.text().then(text => {
+                        sessionStorage.setItem("token", text);
+                        location.href = "/users";
+                    });
+                }
+            });
+        }
+
+    </script>
+
+
+</head>
+
+
+
+
+<body class="login zoom">
+
+    <nav class="navbar navbar-expand-lg navbar-light" id="navbarCompleta">
+        <div class="navLeft">
+            <img class="logo" src="" alt="">
+            <!--Coloco la imagen lo  primero para que aparezca a la izquierda-->
+
+            <a class="navbar-brand company" href="#">GYM MASTER</a>
+        </div>
+        <!--Esto hace que al reducir el tamaño de la web aparezca un boton desplegable-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!--id no se tocan que hacen relacion al button superior para minimizar-->
+
+            <!--La clase modal hace que salga el pop up del login/registro
+            Aqui añado el login/register 
+            Modal: Login / Register Form-->
+
+            <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog cascading-modal" role="document">
+                    <!--Content-->
+                    <div class="modal-content">
+
+                        <!--Modal cascading tabs-->
+                        <div class="modal-c-tabs">
+
+                            <!-- Tabla superior de conectar y registrar-->
+                            <!--La primer ul es para el fondo que no esta activo-->
+                            <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
+                                <li class="nav-item">
+
+                                    <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab">
+                                        <i class="fas fa-user mr-1"></i>Conectarse</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i
+                                            class="fas fa-user-plus mr-1"></i>Registrarse</a>
+                                </li>
+                            </ul>
+
+                            <!-- Tab panels -->
+                            <div class="tab-content">
+                                <!--Panel 7 o pestaña de conectarse-->
+                                <!--el atributo fade hace desvaneceer el panel inferior ó hace que cambie de log a reg-->
+                                <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
+
+                                    <!--Body-->
+                                    <div class="modal-body mb-1">
+                                        <div class="md-form form-sm mb-3">
+                                            <!--Coloco label primero para que el texto me salga arriba del input-->
+                                            <i class="fas fa-envelope prefix"></i>
+                                            <!--el icono delante del texto-->
+                                            <label data-error="wrong" data-success="right"
+                                                for="modalLRInput10">Email</label>
+
+                                            <input type="email" id="modalLRInput10"
+                                                class="form-control form-control-sm validate border-info"
+                                                placeholder="Aqui va el correo">
+
+                                        </div>
+
+                                        <div class="md-form form-sm mb-4">
+                                            <i class="fas fa-lock prefix"></i>
+                                            <label data-error="wrong" data-success="right"
+                                                for="modalLRInput11">Contraseña</label>
+
+                                            <input type="password" id="modalLRInput11"
+                                                class="form-control form-control-sm validate border-info"
+                                                placeholder="Aqui va la contraseña">
+
+                                        </div>
+                                        <div class="text-center mt-2">
+                                            <!--Aqui tengo que agregar el redirect en node para que me lleve al index-->
+                                            <input type="button" onclick="getToken()" class="btn btn-outline-primary"
+                                                value="Conectar">
+                                            <i class="fas fa-sign-in ml-1"></i></button>
+                                        </div>
+                                    </div>
+                                    <!--Footer de la pestaña Conectarse-->
+                                    <div class="modal-footer">
+                                        <div class="options text-center text-md-right mt-1">
+                                            <p class="registro">¿No estas registrado? <a href="#" class="blue-text">Darse de alta</a></p>
+                                            <p class="registro">¿Olvidaste la <a href="#" class="blue-text">Contraseña?</a></p>
+                                        </div>
+                                        <button type="button" class="btn btnLog waves-effect ml-auto"
+                                            data-dismiss="modal">Cerrar</button>
+                                    </div>
+
+                                </div>
+                                <!--/.Panel 7-->
+
+                                <!--Panel 8 o pesataña de registro-->
+                                <div class="tab-pane fade" id="panel8" role="tabpanel">
+
+                                    <!--Body de la pestaña de registrarse-->
+                                    <div class="modal-body">
+                                        <div class="md-form form-sm mb-3">
+                                            <i class="fas fa-envelope prefix"></i>
+                                            <label data-error="wrong" data-success="right" for="modalLRInput12">Correo
+                                                electronico</label>
+                                            <input type="email" id="modalLRInput12"
+                                                class="form-control form-control-sm validate border-info"
+                                                placeholder="Introduce tu correo">
+
+                                        </div>
+
+                                        <div class="md-form form-sm mb-3">
+                                            <i class="fas fa-lock prefix"></i>
+                                            <label data-error="wrong" data-success="right" for="modalLRInput13">
+                                                Contraseña</label>
+                                            <input type="password" id="modalLRInput13"
+                                                class="form-control form-control-sm validate border-info"
+                                                placeholder="Introduce tu contraseña">
+
+                                        </div>
+
+                                        <div class="md-form form-sm mb-3">
+                                            <i class="fas fa-lock prefix"></i>
+                                            <label data-error="wrong" data-success="right" for="modalLRInput14">Repite
+                                                Contraseña</label>
+                                            <input type="password" id="modalLRInput14"
+                                                class="form-control form-control-sm validate border-info"
+                                                placeholder="Vuelve a introducir contraseña">
+
+                                        </div>
+
+                                        <div class="text-center form-sm mt-2">
+                                            <button class="btn btn-outline-primary">Registrarse<i
+                                                    class="fas fa-sign-in ml-1"></i></button>
+                                        </div>
+
+                                    </div>
+                                    <!--Footer-->
+                                    <div class="modal-footer">
+                                        <div class="options text-right">
+                                            <p class="pt-1">¿Ya tienes cuenta? <a href="#"
+                                                    class="blue-text">Conectar</a></p>
+                                        </div>
+                                        <button type="button" class="btn btn-outline-danger waves-effect ml-auto"
+                                            data-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+                                <!--/.Panel 8-->
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--/.Content-->
+                </div>
+            </div>
+            <!--Modal: Login / Register Form
+            EL boton del login/register se encuentra aqui
+            Le he puesto class tex-left para que cuando haga el responsive se alinee con el resto de enlaces-->
+            <div class="text-left">
+                <a href="" class="btn btn-rounded my-3 mr-5" data-toggle="modal" id="btnLog"
+                    data-target="#modalLRForm">Conectar / Registrarse</a>
+            </div>
+
+        </div>
+        </div>
+    </nav>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"
+        integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ"
+        crossorigin="anonymous"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

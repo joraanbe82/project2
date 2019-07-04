@@ -1,0 +1,307 @@
+<% include _header %>
+<script>
+    // Hacer algo con el pathname para sacar la id
+    const path = location.pathname;
+    const id = path.split(["/"]).slice(-1)[0];
+
+    const token = sessionStorage.getItem("token");
+    let decode = jwt_decode(token)
+
+    fetch("/api/users/" + id, {
+        headers: {
+            "Content-type": "application/json"
+        }
+    }).then(response => {
+
+        if (response.ok) {
+
+            response.json().then(user => {
+                console.log(user)
+                document.getElementById("first_name").value = user.first_name;
+                document.getElementById("last_name").value = user.last_name;
+                document.getElementById("birth_date").value = user.birth_date;
+                document.getElementById("nationality").value = user.nationality;
+                document.getElementById("weight").value = user.weight;
+                document.getElementById("belt").value = user.belt;
+                document.getElementById("email").value = user.email;
+
+                if (user.estadisticas.Cortesia) {
+                    //el + delante transforma el string en number
+                    const num1 = +user.estadisticas.Cortesia;
+                    document.getElementById("cortesia").children.item((num1 - 1) * 2).click();
+                }
+                if (user.estadisticas.Integridad) {
+                    const num2 = +user.estadisticas.Integridad;
+                    document.getElementById("integridad").children.item((num2 - 1) * 2).click();
+                }
+
+                if (user.estadisticas.Perseverancia) {
+                    const n = +user.estadisticas.Perseverancia;
+                    document.getElementById("perseverancia").children.item((n - 1) * 2).click();
+                }
+                if (user.estadisticas.Auto_Control) {
+                    const n = +user.estadisticas.Auto_Control;
+                    document.getElementById("auto_control").children.item((n - 1) * 2).click();
+                }
+                if (user.estadisticas.Espiritu_Indomable) {
+                    const n = +user.estadisticas.Espiritu_Indomable;
+                    document.getElementById("espiritu_indomable").children.item((n - 1) * 2).click();
+                }
+                if (user.estadisticas.Fuerza) {
+                    const n = +user.estadisticas.Fuerza;
+                    document.getElementById("fuerza").children.item((n - 1) * 2).click();
+                }
+                if (user.estadisticas.Equilibrio) {
+                    const n = +user.estadisticas.Equilibrio;
+                    document.getElementById("equilibrio").children.item((n - 1) * 2).click();
+                }
+                if (user.estadisticas.Respiracion) {
+                    const n = +user.estadisticas.Respiracion;
+                    document.getElementById("respiracion").children.item((n - 1) * 2).click();
+                }
+                if (user.estadisticas.Tecnica) {
+                    const n = +user.estadisticas.Tecnica;
+                    document.getElementById("tecnica").children.item((n - 1) * 2).click();
+                }
+                if (user.estadisticas.Agilidad) {
+                    const n = +user.estadisticas.Agilidad;
+                    document.getElementById("agilidad").children.item((n - 1) * 2).click();
+                }
+            })
+        }
+    })
+
+
+    function editUser() {
+        if (decode.isAdmin) {
+            const first_nameValue = document.getElementById("first_name").value;
+            const last_nameValue = document.getElementById("last_name").value;
+            const birth_dateValue = document.getElementById("birth_date").value;
+            const nationalityValue = document.getElementById("nationality").value;
+            const weightValue = document.getElementById("weight").value;
+            const beltValue = document.getElementById("belt").value;
+            const emailValue = document.getElementById("email").value;
+
+
+            const CortesiaValue = document.getElementById("choice1").innerText;
+            const IntegridadValue = document.getElementById("choice2").innerText;
+            const PerseveranciaValue = document.getElementById("choice3").innerText;
+            const Auto_ControlValue = document.getElementById("choice4").innerText;
+            const Espiritu_IndomableValue = document.getElementById("choice5").innerText;
+            const FuerzaValue = document.getElementById("choice6").innerText;
+            const EquilibrioValue = document.getElementById("choice7").innerText;
+            const RespiracionValue = document.getElementById("choice8").innerText;
+            const TecnicaValue = document.getElementById("choice9").innerText;
+            const AgilidadValue = document.getElementById("choice10").innerText;
+
+            const path = location.pathname;
+            const id = path.split(["/"]).slice(-1)[0];
+            //el valor -1 del slice recoge el ultimo valor del array, con el 0 decimos que es el primer resultado a devolver
+            fetch("../api/users/" + id, { //con fetch llamamos a la funcion
+                method: "PUT",
+                headers: {//incluir el header para que podamos verificar el token
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    first_name: first_nameValue,
+                    last_name: last_nameValue,
+                    birth_date: birth_dateValue,
+                    nationality: nationalityValue,
+                    weight: weightValue,
+                    belt: beltValue,
+                    email: emailValue,
+                    isAdmin: false,
+                    Cortesia: CortesiaValue,
+                    Integridad: IntegridadValue,
+                    Perseverancia: PerseveranciaValue,
+                    Auto_Control: Auto_ControlValue,
+                    Espiritu_Indomable: Espiritu_IndomableValue,
+                    Fuerza: FuerzaValue,
+                    Equilibrio: EquilibrioValue,
+                    Respiracion: RespiracionValue,
+                    Tecnica: TecnicaValue,
+                    Agilidad: AgilidadValue
+                })
+            }).then(response => {
+                if (response.ok) {
+                    location.href = "/users";
+                }
+            })
+        }
+    }
+    function deleteUser() {
+        if (decode.isAdmin) {
+            const id = path.split(["/"]).slice(-1)[0];
+            fetch("/api/users/" + id, {
+                method: "DELETE",
+                headers: {
+                    "Content-type": "application/json"
+                }
+            }).then(() => {
+                location.href = "/users"
+            })
+        }
+    };
+
+</script>
+
+<div class="container perfilUsuario">
+    <div class="row">
+        <div class="col-5 usuario">
+            <img class="perfil" src="/images/kimono3.png">
+        </div>
+        <div class="col-7">
+
+            <div class="form-group row">
+                <div class="col-6 inline-block">
+                    <label for="Nombre">Nombre</label>
+                    <input type="text" id="first_name" class="form-control">
+
+                    <label for="Apellidos">Apellidos</label>
+                    <input type="text" id="last_name" class="form-control">
+
+                    <label for="Fecha de Nacimiento">Fecha de Nacimiento</label>
+                    <input type="date" id="birth_date" class="form-control">
+
+                    <label for="Nacionalidad">Nacionalidad</label>
+                    <input type="text" id="nationality" class="form-control">
+                </div>
+
+                <div class="col-6 inline-block">
+                    <label for="Peso">Peso</label>
+                    <input type="text" id="weight" class="form-control">
+
+                    <label for="Cinturon">Cinturon</label>
+                    <input type="text" id="belt" class="form-control">
+
+                    <label for="Email">Email</label>
+                    <input type="email" id="email" class="form-control">
+
+                    <input type="button" onclick="deleteUser()" value="Eliminar" class="btn btnDanger ">
+                    <input type="button" onclick="editUser()" value="Actualizar" class="btn btnSucces">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container fullStars">
+    <div class="container col-6 stars d-inline-block">
+        <h1>DISCIPLINAS</h1>
+
+        <h5>Cortesia</h5>
+        <span class="star-rating" id="cortesia">
+            <input type="checkbox" id="check1" name="rating" value="1"><i></i>
+            <input type="checkbox" id="check2" name="rating" value="2"><i></i>
+            <input type="checkbox" id="check3" name="rating" value="3"><i></i>
+            <input type="checkbox" id="check4" name="rating" value="4"><i></i>
+            <input type="checkbox" id="check5" name="rating" value="5"><i></i>
+        </span>
+        <strong class="choice1 value" id="choice1"></strong>
+
+        <h5>Integridad</h5>
+        <span class="star-rating" id="integridad">
+            <input type="checkbox" id="check6" name="rating" value="1"><i></i>
+            <input type="checkbox" id="check7" name="rating" value="2"><i></i>
+            <input type="checkbox" id="check8" name="rating" value="3"><i></i>
+            <input type="checkbox" id="check9" name="rating" value="4"><i></i>
+            <input type="checkbox" id="check10" name="rating" value="5"><i></i>
+        </span>
+        <strong class="choice2 value" id="choice2"></strong>
+
+        <h5>Perseverancia</h5>
+        <span class="star-rating" id="perseverancia">
+            <input type="checkbox" id="check11" name="rating" value="1"><i></i>
+            <input type="checkbox" id="check12" name="rating" value="2"><i></i>
+            <input type="checkbox" id="check13" name="rating" value="3"><i></i>
+            <input type="checkbox" id="check14" name="rating" value="4"><i></i>
+            <input type="checkbox" id="check15" name="rating" value="5"><i></i>
+        </span>
+        <strong class="choice3 value" id="choice3"></strong>
+
+        <h5>Auto Control</h5>
+        <span class="star-rating" id="auto_control">
+            <input type="checkbox" id="check16" name="rating" value="1"><i></i>
+            <input type="checkbox" id="check17" name="rating" value="2"><i></i>
+            <input type="checkbox" id="check18" name="rating" value="3"><i></i>
+            <input type="checkbox" id="check19" name="rating" value="4"><i></i>
+            <input type="checkbox" id="check20" name="rating" value="5"><i></i>
+        </span>
+        <strong class="choice4 value" id="choice4"></strong>
+
+        <h5>Espiritu Indomable</h5>
+        <span class="star-rating" id="espiritu_indomable">
+            <input type="checkbox" id="check21" name="rating" value="1"><i></i>
+            <input type="checkbox" id="check22" name="rating" value="2"><i></i>
+            <input type="checkbox" id="check23" name="rating" value="3"><i></i>
+            <input type="checkbox" id="check24" name="rating" value="4"><i></i>
+            <input type="checkbox" id="check25" name="rating" value="5"><i></i>
+        </span>
+        <strong class="choice5 value" id="choice5"></strong>
+
+    </div>
+
+
+
+    <div class="container col-6 stars d-inline-block">
+        <h1>PROGRESO</h1>
+
+        <h5>Fuerza</h5>
+        <span class="star-rating" id="fuerza">
+            <input type="checkbox" id="check26" name="rating" value="1"><i></i>
+            <input type="checkbox" id="check27" name="rating" value="2"><i></i>
+            <input type="checkbox" id="check28" name="rating" value="3"><i></i>
+            <input type="checkbox" id="check29" name="rating" value="4"><i></i>
+            <input type="checkbox" id="check30" name="rating" value="5"><i></i>
+        </span>
+        <strong class="choice6 value" id="choice6"></strong>
+
+        <h5>Equilibrio</h5>
+        <span class="star-rating" id="equilibrio">
+            <input type="checkbox" id="check31" name="rating" value="1"><i></i>
+            <input type="checkbox" id="check32" name="rating" value="2"><i></i>
+            <input type="checkbox" id="check33" name="rating" value="3"><i></i>
+            <input type="checkbox" id="check34" name="rating" value="4"><i></i>
+            <input type="checkbox" id="check35" name="rating" value="5"><i></i>
+        </span>
+        <strong class="choice7 value" id="choice7"></strong>
+
+        <h5>Respiración</h5>
+        <span class="star-rating" id="respiracion">
+            <input type="checkbox" id="check36" name="rating" value="1"><i></i>
+            <input type="checkbox" id="check37" name="rating" value="2"><i></i>
+            <input type="checkbox" id="check38" name="rating" value="3"><i></i>
+            <input type="checkbox" id="check39" name="rating" value="4"><i></i>
+            <input type="checkbox" id="check40" name="rating" value="5"><i></i>
+        </span>
+        <strong class="choice8 value" id="choice8"></strong>
+
+        <h5>Técnica</h5>
+        <span class="star-rating" id="tecnica">
+            <input type="checkbox" id="check41" name="rating" value="1"><i></i>
+            <input type="checkbox" id="check42" name="rating" value="2"><i></i>
+            <input type="checkbox" id="check43" name="rating" value="3"><i></i>
+            <input type="checkbox" id="check44" name="rating" value="4"><i></i>
+            <input type="checkbox" id="check45" name="rating" value="5"><i></i>
+        </span>
+        <strong class="choice9 value" id="choice9"></strong>
+
+        <h5>Agilidad</h5>
+        <span class="star-rating" id="agilidad">
+            <input type="checkbox" id="check46" name="rating" value="1"><i></i>
+            <input type="checkbox" id="check47" name="rating" value="2"><i></i>
+            <input type="checkbox" id="check48" name="rating" value="3"><i></i>
+            <input type="checkbox" id="check49" name="rating" value="4"><i></i>
+            <input type="checkbox" id="check50" name="rating" value="5"><i></i>
+        </span>
+        <strong class="choice10 value" id="choice10"></strong>
+
+    </div>
+
+</div>
+
+
+<% include _footer %>
